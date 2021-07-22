@@ -26,10 +26,6 @@ tweets = api.user_timeline(screen_name=userID,
                            )
 for info in tweets[:1]:
      #api.retweet(info.id)
-     print("ID: {}".format(info.id))
-     print(info.created_at)
-     print(info.full_text)
-     print("\n")
 
 payload = {
     'embeds': [
@@ -57,13 +53,4 @@ req = request.Request(url=WEBHOOK_URL,
                       method='POST')
 
 # Puis on l'émet !
-try:
-    response = request.urlopen(req)
-    print(response.status)
-    print(response.reason)
-    print(response.headers)
-except HTTPError as e:
-    print('ERROR')
-    print(e.reason)
-    print(e.hdrs)
-    print(e.file.read())
+response = request.urlopen(req)
